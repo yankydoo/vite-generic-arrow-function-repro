@@ -2,7 +2,18 @@ import React, { useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
 
-const doSomething = <T, >(value: T): T => {
+// this works
+function doSomething1<T>(value: T): T {
+  return value;
+}
+
+// this does not
+const doSomething2 = <T, >(value: T): T => {
+  return value;
+};
+
+// this is a possible workaround
+const doSomething3 = <T extends {}>(value: T): T => {
   return value;
 };
 
@@ -16,7 +27,7 @@ function App() {
         <p>Hello Vite + React!</p>
         <p>
           <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {doSomething(count)}
+            count is: {doSomething2(count)}
           </button>
         </p>
         <p>
